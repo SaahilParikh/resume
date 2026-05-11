@@ -1,0 +1,170 @@
+%-------------------------
+% Resume in LaTeX
+% Template by Sourabh Bajaj (MIT)
+% Content: Saahil Parikh
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeHeading}[4]{
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\newcommand{\publication}[1]{%
+  \item\small #1\vspace{-2pt}%
+}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://saahil.io}{\Large Saahil Parikh}} & \href{https://saahil.io}{saahil.io} \\
+  Software Engineer & \href{https://www.linkedin.com/in/saahilparikh}{linkedin.com/in/saahilparikh} \\
+\end{tabular*}
+
+
+%-----------EXPERIENCE-----------------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Amazon Web Services}{Seattle, WA}
+      {Software Development Engineer 2 -- Elastic MapReduce}{2022 -- Present}
+      \resumeItemListStart
+        \resumeItem{Distributed systems}
+          {Design and operate multiple microservices spanning EMR cluster orchestration, inter-node communication, resilience, and recovery across a high-scale distributed fleet.}
+        \resumeItem{LLM ecosystem}
+          {Maintain a prompt-optimization library, author an MCP (Model Context Protocol) server, and ship vector-database integrations across the LLM stack.}
+        \resumeItem{Diagnostics tooling}
+          {Mentored an intern to build a node-state diagnostics tool, materially reducing time-to-mitigation on customer escalations.}
+        \resumeItem{Disk-pressure resilience}
+          {Designed a heuristic disk-management policy that preserves customer data integrity during node instability under high disk pressure.}
+        \resumeItem{Cluster start latency}
+          {Drove cross-team efforts to investigate and improve key business metrics, including cluster-start latency.}
+        \resumeItem{Release process}
+          {Established the team's patch-testing and release documentation process, raising production deploy quality.}
+        \resumeItem{Configuration}
+          {Extracted on-cluster configuration into dedicated files, improving operational flexibility across the service.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Amazon Web Services}{Seattle, WA}
+      {Software Development Engineer Intern -- Elastic MapReduce}{2021}
+      \resumeItemListStart
+        \resumeItem{Finite-state-machine analysis}
+          {Extended an internal FSM analysis tool for cluster behavior; cut day-long analysis runs to \textasciitilde 16 seconds end-to-end.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {The Boeing Company}{Los Angeles, CA}
+      {Software Developer Intern -- Ground Systems \& Satellites}{2018}
+      \resumeItemListStart
+        \resumeItem{Satellite simulation}
+          {Built proprietary satellite simulation software; wrote the communication interface and packet decryption algorithm.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------SELECTED PROJECTS-----------------
+\section{Selected Projects}
+  \resumeSubHeadingListStart
+    \resumeItem{Choose Your Own Adventure}
+      {AI-powered text adventure with turn-by-turn narrative, scene art, and voice generation. LangGraph, Amazon Bedrock (Claude, Nova Canvas), Polly; Stripe-billed. \href{https://choose-your-own-adventure.com}{choose-your-own-adventure.com}}
+    \resumeItem{Distributed Protocol Visualizer}
+      {Interactive Raft visualizer with seeded, deterministic browser simulation; log replication, commit rules, term handling, scrubbable playback. \href{https://github.com/SaahilParikh/distributed-protocol-visualizer}{github.com/SaahilParikh/distributed-protocol-visualizer}}
+  \resumeSubHeadingListEnd
+
+
+%-----------RESEARCH-----------------
+\section{Research}
+  \resumeSubHeadingListStart
+    \publication{Saahil Parikh, Yi Wang. ``\textit{Dynamic Decentralized Line-of-Sight Rapidly-Exploring Random Trees for Multi-Agent Safety Planning}.'' UC Berkeley, 2022.}
+    \publication{Saahil Parikh, Jason Li. ``\textit{Bluetooth Low Energy Controlled Quadcopter on the nRF52 Embedded Board}.'' UC Berkeley EECS149, 2021.}
+    \publication{Saahil Parikh. ``\textit{Using Artificial Intelligence to Determine the Veracity of News Outlets}.'' 2019.}
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, Berkeley}{Berkeley, CA}
+      {B.S.\ Computer Science $\cdot$ B.S.\ Electrical Engineering -- Regents' Scholar}{2019 -- 2022}
+    \resumeSubheading
+      {Georgia Institute of Technology}{Atlanta, GA}
+      {M.S.\ Computer Science -- Computing Systems specialization}{2023 -- 2026 (Expected)}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}

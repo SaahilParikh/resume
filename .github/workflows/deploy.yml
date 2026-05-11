@@ -1,0 +1,75 @@
+name: Build and publish resume
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'resume.tex'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-resume-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  RESUME_KEY: resume.pdf
+  RESUME_CACHE_CONTROL: 'public, max-age=60, must-revalidate'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+          latexmk_use_xelatex: false
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume
+          path: resume.pdf
+          if-no-files-found: error
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: resume-deploy-${{ github.run_id }}
+
+      - name: Upload resume to S3
+        run: |
+          aws s3 cp resume.pdf "s3://$BUCKET/$RESUME_KEY" \
+            --content-type "application/pdf" \
+            --cache-control "$RESUME_CACHE_CONTROL"
+        env:
+          BUCKET: ${{ vars.SITE_BUCKET_NAME }}
+
+      - name: Invalidate CloudFront for resume path
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "$DISTRIBUTION_ID" \
+            --paths "/$RESUME_KEY"
+        env:
+          DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+
+      - name: Deployment summary
+        run: |
+          {
+            echo "### Resume published"
+            echo "- Live: https://saahil.io/$RESUME_KEY"
+            echo "- Bucket key: \`$RESUME_KEY\`"
+            echo "- Commit: \`${{ github.sha }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
