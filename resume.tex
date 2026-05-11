@@ -76,6 +76,10 @@
   \item\small #1\vspace{-2pt}%
 }
 
+\newcommand{\project}[4]{%
+  \item\small \textbf{#1} -- #2 \href{#3}{[#4]}\vspace{-2pt}%
+}
+
 \renewcommand{\labelitemii}{$\circ$}
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
@@ -138,10 +142,12 @@
 %-----------SELECTED PROJECTS-----------------
 \section{Selected Projects}
   \resumeSubHeadingListStart
-    \resumeItem{Choose Your Own Adventure}
-      {AI-powered text adventure with turn-by-turn narrative, scene art, and voice generation. LangGraph, Amazon Bedrock (Claude, Nova Canvas), Polly; Stripe-billed. \href{https://choose-your-own-adventure.com}{choose-your-own-adventure.com}}
-    \resumeItem{Distributed Protocol Visualizer}
-      {Interactive Raft visualizer with seeded, deterministic browser simulation; log replication, commit rules, term handling, scrubbable playback. \href{https://github.com/SaahilParikh/distributed-protocol-visualizer}{github.com/SaahilParikh/distributed-protocol-visualizer}}
+    \project{Choose Your Own Adventure}
+      {AI-powered text adventure with turn-by-turn narrative, scene art, and voice. LangGraph, Amazon Bedrock (Claude, Nova Canvas), Polly; Stripe-billed.}
+      {https://choose-your-own-adventure.com}{live}
+    \project{Distributed Protocol Visualizer}
+      {Interactive Raft visualizer with seeded, deterministic browser simulation; log replication, commit rules, term handling, scrubbable playback.}
+      {https://github.com/SaahilParikh/distributed-protocol-visualizer}{github}
   \resumeSubHeadingListEnd
 
 
